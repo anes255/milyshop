@@ -40,6 +40,7 @@ export default function CheckoutPage() {
       if (!res.ok) throw new Error(data.error || "error");
       clear();
       setDone(true);
+      window.scrollTo({ top: 0, behavior: "instant" });
     } catch (e) {
       setErr(e.message);
     } finally {

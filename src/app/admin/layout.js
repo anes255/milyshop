@@ -22,7 +22,8 @@ export default function AdminLayout({ children }) {
   return (
     <div className="min-h-screen flex bg-beige/40" dir={dir}>
       <AdminSidebar user={{ email: "admin" }} lang={lang} />
-      <div className="flex-1 lg:ms-64 min-w-0">
+      {/* pt-14 clears the fixed mobile top bar (h-14); none on desktop */}
+      <div className="flex-1 lg:ms-64 min-w-0 pt-14 lg:pt-0">
         <div className="p-4 md:p-8">{children}</div>
       </div>
     </div>

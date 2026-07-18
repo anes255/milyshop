@@ -3,10 +3,10 @@ import { useState } from "react";
 import { useLang } from "@/components/LangProvider";
 import { getAdminDict } from "@/lib/admin-i18n";
 import { apiFetch } from "@/lib/api";
+import ImageUploader from "./ImageUploader";
 
 const FIELDS = [
   ["siteName", "siteName"],
-  ["logo", "logo"],
   ["phone", "phone"],
   ["email", "email"],
   ["whatsapp", "whatsapp"],
@@ -36,10 +36,14 @@ export default function AdminSettings({ initial }) {
     <div>
       <h1 className="text-2xl font-semibold mb-6">{t.settingsTitle}</h1>
       <form onSubmit={save} className="bg-white rounded-2xl shadow-sm border border-beige-dark p-6 max-w-2xl space-y-4">
-        {form.logo && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={form.logo} alt="logo" className="h-20 object-contain mb-2" />
-        )}
+        <div>
+          <label className="label">{t.logo}</label>
+          {form.logo && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={form.logo} alt="logo" className="h-20 object-contain mb-2" />
+          )}
+          <ImageUploader value={form.logo ? [form.logo] : []} onChange={(v) => setForm({ ...form, logo: v[0] || "" })} t={t} />
+        </div>
         {FIELDS.map(([key, label]) => (
           <div key={key}>
             <label className="label">{t[label]}</label>

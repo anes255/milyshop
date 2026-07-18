@@ -89,7 +89,7 @@ export const adminDict = {
     // settings
     settingsTitle: "Paramètres du site",
     siteName: "Nom du site",
-    logo: "Logo (URL)",
+    logo: "Logo",
     email: "Email",
     whatsapp: "WhatsApp",
     facebook: "Facebook",
@@ -188,7 +188,7 @@ export const adminDict = {
     noCustomers: "لا يوجد عملاء",
     settingsTitle: "إعدادات الموقع",
     siteName: "اسم الموقع",
-    logo: "الشعار (رابط)",
+    logo: "الشعار",
     email: "البريد الإلكتروني",
     whatsapp: "واتساب",
     facebook: "فيسبوك",

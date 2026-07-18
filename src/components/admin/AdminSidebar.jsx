@@ -56,7 +56,6 @@ export default function AdminSidebar({ user, lang = "fr" }) {
         </div>
       </aside>
       {open && <div className="lg:hidden fixed inset-0 bg-black/40 z-30" onClick={() => setOpen(false)} />}
-      <div className="lg:hidden h-14" />
     </>
   );
 }
