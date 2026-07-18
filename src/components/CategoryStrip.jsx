@@ -27,7 +27,7 @@ export default function CategoryStrip({ categories = [] }) {
   const { lang } = useLang();
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-      {categories.slice(0, 15).map((c) => (
+      {categories.map((c) => (
         <Link
           key={c.id}
           href={`/shop?category=${c.slug}`}
