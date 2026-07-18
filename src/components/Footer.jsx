@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLang } from "./LangProvider";
 
 function Social({ href, children }) {
@@ -13,6 +14,8 @@ function Social({ href, children }) {
 
 export default function Footer({ settings }) {
   const { t } = useLang();
+  const pathname = usePathname();
+  if (pathname?.startsWith("/admin")) return null;
   return (
     <footer className="bg-ink text-white/80 mt-20">
       <div className="container-mily py-14 grid gap-10 md:grid-cols-4">

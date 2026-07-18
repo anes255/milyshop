@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useLang } from "./LangProvider";
 import { useCart } from "@/lib/cart-store";
 import { localizedName } from "@/lib/utils";
@@ -9,9 +9,13 @@ import { localizedName } from "@/lib/utils";
 export default function Navbar({ settings, categories }) {
   const { lang, t, setLang } = useLang();
   const router = useRouter();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
   const count = useCart((s) => s.items.reduce((a, i) => a + i.quantity, 0));
+
+  // The admin area has its own layout/sidebar — no storefront chrome there.
+  if (pathname?.startsWith("/admin")) return null;
 
   const submitSearch = (e) => {
     e.preventDefault();

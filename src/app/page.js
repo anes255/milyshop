@@ -38,9 +38,9 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-beige/90 via-beige/50 to-transparent" />
         <div className="container-mily relative">
           <div className="max-w-lg fade-up">
-            <p className="text-gold tracking-[0.3em] text-sm mb-3">MILY SHOP</p>
-            <h1 className="text-5xl md:text-6xl font-semibold text-ink leading-tight">{t.heroTitle}</h1>
-            <p className="text-lg text-gray-600 mt-4">{t.heroSubtitle}</p>
+            <p className="text-gold tracking-[0.3em] text-xs sm:text-sm mb-3">MILY SHOP</p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-ink leading-tight">{t.heroTitle}</h1>
+            <p className="text-base sm:text-lg text-gray-600 mt-4">{t.heroSubtitle}</p>
             <Link href="/shop" className="btn-gold mt-8">{t.shopNow}</Link>
           </div>
         </div>
