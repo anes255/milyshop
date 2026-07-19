@@ -7,11 +7,11 @@ import { apiFetch } from "@/lib/api";
 
 const STATUSES = ["PENDING", "CONFIRMED", "SHIPPED", "DELIVERED", "CANCELLED"];
 const COLOR = {
-  PENDING: "bg-yellow-100 text-yellow-700",
-  CONFIRMED: "bg-blue-100 text-blue-700",
-  SHIPPED: "bg-purple-100 text-purple-700",
-  DELIVERED: "bg-green-100 text-green-700",
-  CANCELLED: "bg-red-100 text-red-700",
+  PENDING: "bg-amber-50 text-amber-600",
+  CONFIRMED: "bg-sky-50 text-sky-600",
+  SHIPPED: "bg-violet-50 text-violet-600",
+  DELIVERED: "bg-emerald-50 text-emerald-600",
+  CANCELLED: "bg-red-50 text-red-600",
 };
 
 export default function AdminOrders({ initial }) {
@@ -36,44 +36,44 @@ export default function AdminOrders({ initial }) {
   return (
     <div>
       <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
-        <h1 className="text-2xl font-semibold">{t.orders} ({orders.length})</h1>
+        <h1 className="admin-title">{t.orders} <span className="text-gray-300 font-normal">({orders.length})</span></h1>
         <div className="flex gap-3 flex-wrap">
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t.search} className="border border-beige-dark px-3 py-2 text-sm outline-none focus:border-gold rounded-full" />
-          <select value={filter} onChange={(e) => setFilter(e.target.value)} className="border border-beige-dark px-3 py-2 text-sm bg-white rounded-full">
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t.search} className="input py-2 w-40 sm:w-56 rounded-full" />
+          <select value={filter} onChange={(e) => setFilter(e.target.value)} className="input py-2 w-auto bg-white rounded-full">
             <option value="">{t.allStatuses}</option>
             {STATUSES.map((s) => <option key={s} value={s}>{t[s]}</option>)}
           </select>
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-beige-dark overflow-x-auto">
+      <div className="admin-card overflow-x-auto">
         <table className="w-full text-sm min-w-[760px]">
-          <thead className="bg-beige/50 text-gray-500">
+          <thead>
             <tr>
-              <th className="text-start p-4">#</th>
-              <th className="text-start p-4">{t.client}</th>
-              <th className="text-start p-4">{t.phone}</th>
-              <th className="text-start p-4">{t.total}</th>
-              <th className="text-start p-4">{t.status}</th>
-              <th className="text-start p-4">{t.date}</th>
-              <th className="p-4"></th>
+              <th className="admin-th">#</th>
+              <th className="admin-th">{t.client}</th>
+              <th className="admin-th">{t.phone}</th>
+              <th className="admin-th">{t.total}</th>
+              <th className="admin-th">{t.status}</th>
+              <th className="admin-th">{t.date}</th>
+              <th className="admin-th"></th>
             </tr>
           </thead>
           <tbody>
             {filtered.map((o) => (
               <Fragment key={o.id}>
-                <tr className="border-t border-beige-dark">
-                  <td className="p-4 font-mono text-xs">{o.id.slice(-6).toUpperCase()}</td>
-                  <td className="p-4 font-medium">{o.fullName}</td>
-                  <td className="p-4 text-gray-500">{o.phone}</td>
-                  <td className="p-4">{formatPrice(o.total)}</td>
-                  <td className="p-4">
-                    <select value={o.status} onChange={(e) => changeStatus(o.id, e.target.value)} className={`text-xs px-2 py-1 rounded border-0 ${COLOR[o.status]}`}>
+                <tr className="admin-row">
+                  <td className="admin-td font-mono text-xs text-gray-400">{o.id.slice(-6).toUpperCase()}</td>
+                  <td className="admin-td font-medium text-ink">{o.fullName}</td>
+                  <td className="admin-td text-gray-500">{o.phone}</td>
+                  <td className="admin-td font-semibold text-gold-dark">{formatPrice(o.total)}</td>
+                  <td className="admin-td">
+                    <select value={o.status} onChange={(e) => changeStatus(o.id, e.target.value)} className={`text-xs font-medium px-3 py-1.5 rounded-full border-0 cursor-pointer outline-none ${COLOR[o.status]}`}>
                       {STATUSES.map((s) => <option key={s} value={s}>{t[s]}</option>)}
                     </select>
                   </td>
-                  <td className="p-4 text-gray-400">{new Date(o.createdAt).toLocaleDateString()}</td>
-                  <td className="p-4"><button onClick={() => setOpen(open === o.id ? null : o.id)} className="text-gold hover:underline">{t.details}</button></td>
+                  <td className="admin-td text-gray-400">{new Date(o.createdAt).toLocaleDateString()}</td>
+                  <td className="admin-td"><button onClick={() => setOpen(open === o.id ? null : o.id)} className="text-gold hover:text-gold-dark font-medium">{t.details}</button></td>
                 </tr>
                 {open === o.id && (
                   <tr className="bg-beige/30"><td colSpan={7} className="p-4">

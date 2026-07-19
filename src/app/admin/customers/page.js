@@ -21,29 +21,29 @@ export default function AdminCustomersPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold mb-6">{t.customers} ({list.length})</h1>
-      <div className="bg-white rounded-2xl shadow-sm border border-beige-dark overflow-x-auto">
+      <h1 className="admin-title mb-6">{t.customers} <span className="text-gray-300 font-normal">({list.length})</span></h1>
+      <div className="admin-card overflow-x-auto">
         <table className="w-full text-sm min-w-[640px]">
-          <thead className="bg-beige/50 text-gray-500">
+          <thead>
             <tr>
-              <th className="text-start p-4">{t.name}</th>
-              <th className="text-start p-4">{t.phone}</th>
-              <th className="text-start p-4">{t.address}</th>
-              <th className="text-start p-4">{t.orders}</th>
-              <th className="text-start p-4">{t.totalSpent}</th>
+              <th className="admin-th">{t.name}</th>
+              <th className="admin-th">{t.phone}</th>
+              <th className="admin-th">{t.address}</th>
+              <th className="admin-th">{t.orders}</th>
+              <th className="admin-th">{t.totalSpent}</th>
             </tr>
           </thead>
           <tbody>
             {list.map((c, i) => (
-              <tr key={i} className="border-t border-beige-dark">
-                <td className="p-4 font-medium">{c.name}</td>
-                <td className="p-4 text-gray-500">{c.phone || t.none}</td>
-                <td className="p-4 text-gray-500 max-w-xs truncate">{c.address || t.none}</td>
-                <td className="p-4">{c.count}</td>
-                <td className="p-4">{formatPrice(c.spent)}</td>
+              <tr key={i} className="admin-row">
+                <td className="admin-td font-medium text-ink">{c.name}</td>
+                <td className="admin-td text-gray-500">{c.phone || t.none}</td>
+                <td className="admin-td text-gray-500 max-w-xs truncate">{c.address || t.none}</td>
+                <td className="admin-td"><span className="pill bg-beige text-gold-dark">{c.count}</span></td>
+                <td className="admin-td font-semibold text-gold-dark">{formatPrice(c.spent)}</td>
               </tr>
             ))}
-            {list.length === 0 && <tr><td colSpan={5} className="p-8 text-center text-gray-400">{t.noCustomers}</td></tr>}
+            {list.length === 0 && <tr><td colSpan={5} className="p-10 text-center text-gray-400">{t.noCustomers}</td></tr>}
           </tbody>
         </table>
       </div>

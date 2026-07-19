@@ -34,8 +34,8 @@ export default function AdminSettings({ initial }) {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold mb-6">{t.settingsTitle}</h1>
-      <form onSubmit={save} className="bg-white rounded-2xl shadow-sm border border-beige-dark p-6 max-w-2xl space-y-4">
+      <h1 className="admin-title mb-6">{t.settingsTitle}</h1>
+      <form onSubmit={save} className="admin-card p-6 max-w-2xl space-y-4">
         <div>
           <label className="label">{t.logo}</label>
           {form.logo && (

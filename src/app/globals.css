@@ -60,6 +60,26 @@ html[dir="rtl"] h3 {
   .section-title {
     @apply text-3xl md:text-4xl font-semibold text-gold-dark text-center;
   }
+  /* Admin */
+  .admin-card {
+    @apply bg-white rounded-2xl border border-beige-dark;
+    box-shadow: 0 4px 24px -8px rgba(196, 139, 163, 0.18);
+  }
+  .admin-title {
+    @apply text-xl md:text-2xl font-semibold text-ink;
+  }
+  .admin-th {
+    @apply text-start p-4 text-xs font-semibold uppercase tracking-wider text-gray-400;
+  }
+  .admin-td {
+    @apply p-4 align-middle;
+  }
+  .admin-row {
+    @apply border-t border-beige transition-colors hover:bg-beige/40;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full;
+  }
 }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }

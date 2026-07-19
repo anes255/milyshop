@@ -41,33 +41,33 @@ export default function AdminCategories({ initial }) {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold">{t.categories} ({cats.length})</h1>
-        <button onClick={openNew} className="btn-gold py-2">+ {t.add}</button>
+        <h1 className="admin-title">{t.categories} <span className="text-gray-300 font-normal">({cats.length})</span></h1>
+        <button onClick={openNew} className="btn-gold py-2.5">+ {t.add}</button>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-beige-dark overflow-x-auto">
+      <div className="admin-card overflow-x-auto">
         <table className="w-full text-sm min-w-[600px]">
-          <thead className="bg-beige/50 text-gray-500">
+          <thead>
             <tr>
-              <th className="text-start p-4">{t.nameFr}</th>
-              <th className="text-start p-4">{t.nameAr}</th>
-              <th className="text-start p-4">{t.slug}</th>
-              <th className="text-start p-4">{t.parent}</th>
-              <th className="text-start p-4">{t.products}</th>
-              <th className="p-4"></th>
+              <th className="admin-th">{t.nameFr}</th>
+              <th className="admin-th">{t.nameAr}</th>
+              <th className="admin-th">{t.slug}</th>
+              <th className="admin-th">{t.parent}</th>
+              <th className="admin-th">{t.products}</th>
+              <th className="admin-th"></th>
             </tr>
           </thead>
           <tbody>
             {cats.map((c) => (
-              <tr key={c.id} className="border-t border-beige-dark">
-                <td className="p-4 font-medium">{c.nameFr}</td>
-                <td className="p-4" dir="rtl">{c.nameAr}</td>
-                <td className="p-4 text-gray-400 font-mono text-xs">{c.slug}</td>
-                <td className="p-4 text-gray-500">{c.parent ? localizedName(c.parent, lang) : t.none}</td>
-                <td className="p-4">{c._count?.products ?? 0}</td>
-                <td className="p-4 whitespace-nowrap">
-                  <button onClick={() => openEdit(c)} className="text-gold hover:underline me-3">{t.edit}</button>
-                  <button onClick={() => remove(c.id)} className="text-red-500 hover:underline">{t.del}</button>
+              <tr key={c.id} className="admin-row">
+                <td className="admin-td font-medium text-ink">{c.nameFr}</td>
+                <td className="admin-td" dir="rtl">{c.nameAr}</td>
+                <td className="admin-td text-gray-400 font-mono text-xs">{c.slug}</td>
+                <td className="admin-td text-gray-500">{c.parent ? localizedName(c.parent, lang) : t.none}</td>
+                <td className="admin-td"><span className="pill bg-beige text-gold-dark">{c._count?.products ?? 0}</span></td>
+                <td className="admin-td whitespace-nowrap">
+                  <button onClick={() => openEdit(c)} className="text-gold hover:text-gold-dark font-medium me-3">{t.edit}</button>
+                  <button onClick={() => remove(c.id)} className="text-red-500 hover:text-red-600 font-medium">{t.del}</button>
                 </td>
               </tr>
             ))}

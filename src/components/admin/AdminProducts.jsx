@@ -72,50 +72,50 @@ export default function AdminProducts({ initialProducts, categories }) {
   return (
     <div>
       <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
-        <h1 className="text-2xl font-semibold">{t.products} ({products.length})</h1>
+        <h1 className="admin-title">{t.products} <span className="text-gray-300 font-normal">({products.length})</span></h1>
         <div className="flex gap-3">
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t.search} className="border border-beige-dark px-3 py-2 text-sm outline-none focus:border-gold rounded-full" />
-          <button onClick={openNew} className="btn-gold py-2">+ {t.add}</button>
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t.search} className="input py-2 w-40 sm:w-56 rounded-full" />
+          <button onClick={openNew} className="btn-gold py-2.5 shrink-0">+ {t.add}</button>
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-beige-dark overflow-x-auto">
+      <div className="admin-card overflow-x-auto">
         <table className="w-full text-sm min-w-[700px]">
-          <thead className="bg-beige/50 text-gray-500">
+          <thead>
             <tr>
-              <th className="text-start p-4">{t.product}</th>
-              <th className="text-start p-4">{t.category}</th>
-              <th className="text-start p-4">{t.price}</th>
-              <th className="text-start p-4">{t.stock}</th>
-              <th className="text-start p-4">{t.tags}</th>
-              <th className="p-4"></th>
+              <th className="admin-th">{t.product}</th>
+              <th className="admin-th">{t.category}</th>
+              <th className="admin-th">{t.price}</th>
+              <th className="admin-th">{t.stock}</th>
+              <th className="admin-th">{t.tags}</th>
+              <th className="admin-th"></th>
             </tr>
           </thead>
           <tbody>
             {filtered.map((p) => (
-              <tr key={p.id} className="border-t border-beige-dark">
-                <td className="p-4">
+              <tr key={p.id} className="admin-row">
+                <td className="admin-td">
                   <div className="flex items-center gap-3">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={p.images?.[0] || "https://via.placeholder.com/60"} alt="" className="w-12 h-14 object-cover bg-beige rounded" />
-                    <span className="font-medium">{localizedName(p, lang)}</span>
+                    <img src={p.images?.[0] || "https://via.placeholder.com/60"} alt="" className="w-11 h-14 object-cover bg-beige rounded-lg shrink-0" />
+                    <span className="font-medium text-ink">{localizedName(p, lang)}</span>
                   </div>
                 </td>
-                <td className="p-4 text-gray-500">{p.category ? localizedName(p.category, lang) : t.none}</td>
-                <td className="p-4">{formatPrice(p.discountPrice || p.price)}</td>
-                <td className="p-4"><span className={p.stock <= 0 ? "text-red-500" : ""}>{p.stock}</span></td>
-                <td className="p-4 text-xs">
-                  {p.featured && <span className="bg-gold/20 text-gold px-1.5 py-0.5 rounded me-1">{t.vedetteTag}</span>}
-                  {p.newArrival && <span className="bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded me-1">{t.newTag}</span>}
-                  {p.bestSeller && <span className="bg-green-100 text-green-600 px-1.5 py-0.5 rounded">{t.bestTag}</span>}
+                <td className="admin-td text-gray-500">{p.category ? localizedName(p.category, lang) : t.none}</td>
+                <td className="admin-td font-semibold text-gold-dark">{formatPrice(p.discountPrice || p.price)}</td>
+                <td className="admin-td"><span className={`pill ${p.stock <= 0 ? "bg-red-50 text-red-600" : "bg-emerald-50 text-emerald-600"}`}>{p.stock}</span></td>
+                <td className="admin-td text-xs whitespace-nowrap">
+                  {p.featured && <span className="pill bg-gold/15 text-gold-dark me-1">{t.vedetteTag}</span>}
+                  {p.newArrival && <span className="pill bg-sky-50 text-sky-600 me-1">{t.newTag}</span>}
+                  {p.bestSeller && <span className="pill bg-emerald-50 text-emerald-600">{t.bestTag}</span>}
                 </td>
-                <td className="p-4 whitespace-nowrap">
-                  <button onClick={() => openEdit(p)} className="text-gold hover:underline me-3">{t.edit}</button>
-                  <button onClick={() => remove(p.id)} className="text-red-500 hover:underline">{t.del}</button>
+                <td className="admin-td whitespace-nowrap">
+                  <button onClick={() => openEdit(p)} className="text-gold hover:text-gold-dark font-medium me-3">{t.edit}</button>
+                  <button onClick={() => remove(p.id)} className="text-red-500 hover:text-red-600 font-medium">{t.del}</button>
                 </td>
               </tr>
             ))}
-            {filtered.length === 0 && <tr><td colSpan={6} className="p-8 text-center text-gray-400">{t.noProducts}</td></tr>}
+            {filtered.length === 0 && <tr><td colSpan={6} className="p-10 text-center text-gray-400">{t.noProducts}</td></tr>}
           </tbody>
         </table>
       </div>
