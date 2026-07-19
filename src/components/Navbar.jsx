@@ -36,14 +36,16 @@ export default function Navbar({ settings, categories }) {
           <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
 
-        <Link href="/" className="flex items-center gap-2 min-w-0 flex-1 justify-center lg:flex-none lg:justify-start">
+        {/* dir=ltr keeps the order fixed (name on the left, logo on the right)
+            in both languages; centered on mobile, left-aligned on desktop */}
+        <Link href="/" dir="ltr" className="flex items-center gap-2 min-w-0 flex-1 justify-center lg:flex-none lg:justify-start">
+          <span className="serif text-sm sm:text-lg md:text-2xl font-semibold text-gold leading-tight whitespace-nowrap">
+            {settings?.siteName || "Boutique MilyShop"}
+          </span>
           {settings?.logo ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={settings.logo} alt={settings.siteName} className="h-12 sm:h-14 w-auto object-contain shrink-0" />
           ) : null}
-          <span className="serif text-sm sm:text-lg md:text-2xl font-semibold text-gold leading-tight whitespace-nowrap">
-            {settings?.siteName || "Boutique MilyShop"}
-          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">

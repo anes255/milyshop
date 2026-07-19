@@ -26,12 +26,12 @@ const ICONS = {
 export default function CategoryStrip({ categories = [] }) {
   const { lang } = useLang();
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+    <div className="flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 snap-x snap-mandatory scroll-px-4">
       {categories.map((c) => (
         <Link
           key={c.id}
           href={`/shop?category=${c.slug}`}
-          className="group flex flex-col items-center gap-3 rounded-2xl border border-beige-dark bg-beige/40 p-6 transition hover:bg-rose-light hover:border-gold"
+          className="group shrink-0 snap-start w-28 sm:w-32 flex flex-col items-center gap-3 rounded-2xl border border-beige-dark bg-beige/40 p-5 transition hover:bg-rose-light hover:border-gold"
         >
           <span className="w-14 h-14 rounded-full bg-white flex items-center justify-center overflow-hidden text-gold transition group-hover:scale-110">
             {c.image ? (
